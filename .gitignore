@@ -1,0 +1,9 @@
+node_modules
+bower_components
+.idea
+.tmp
+.sass-cache
+dist
+jshint-result.xml
+test/junit-test-report.xml
+test/coverage/
