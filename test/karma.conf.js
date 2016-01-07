@@ -38,6 +38,7 @@ module.exports = function(config) {
       'bower_components/foundation/js/foundation.js',
       'bower_components/jszip/dist/jszip.js',
       'bower_components/file-saver.js/FileSaver.js',
+      'bower_components/less/dist/less.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
