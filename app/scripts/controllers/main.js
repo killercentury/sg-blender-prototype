@@ -16,21 +16,29 @@ angular.module('angularStarterApp')
     ];
 
     $scope.download = function () {
-      var promise1 = $http.get('/bower_components/foundation/css/foundation.css');
-      var promise2 = $http.get('/bower_components/bootstrap/dist/css/bootstrap.css');
+      var promise1 = $http.get('/styles/component-1.less');
+      var promise2 = $http.get('/styles/component-2.less');
 
       $q.all([promise1, promise2]).then(function (response) {
-        var css = response[0].data + response[1].data;
-
-        var zip = new JSZip();
-        var cssFolder = zip.folder('css');
-        cssFolder.file('styleguide.css', css);
-        zip.file('config.json', 'myconfig');
-        var content = zip.generate({
-          type: 'blob'
+        var lessSource = response[0].data + response[1].data;
+        console.log(lessSource);
+        less.render(lessSource, {
+          compress: true
+        }).then(function (output) {
+          console.log(output);
+          var css = output.css;
+          var zip = new JSZip();
+          var cssFolder = zip.folder('css');
+          cssFolder.file('styleguide.css', css);
+          zip.file('config.json', 'myconfig');
+          var content = zip.generate({
+            type: 'blob'
+          });
+          saveAs(content, 'styleguide.zip');
         });
-        saveAs(content, "styleguide.zip");
+
       });
+
     };
 
   });
