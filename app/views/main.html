@@ -1,7 +1,35 @@
 <div class="jumbotron">
   <h1>StyleGuide Blender</h1>
   <p class="lead">
-    <img src="images/styleguide-avatar.png" alt="Styleguide" style="border-radius: 100px;"><br>
+    <img src="images/styleguide-avatar.png" alt="Styleguide" style="border-radius: 100px;">
+    <br>
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/" ng-click="download()">Compile and Download</a></p>
+</div>
+
+<div>
+  <form novalidate class="builder-form">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="sg-base" ng-model="sg.base" /> sg-base
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="sg-component-icons" ng-model="sg.component.icons" /> sg-component-icons
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="sg-component-grid" ng-model="sg.component.grid" /> sg-component-grid
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="sg-component-typography" ng-model="sg.component.typography" /> sg-component-typography
+      </label>
+    </div>
+  </form>
+  <div>{{ sg }}</div>
+  <br/>
+  <div><a class="btn btn-lg btn-success" ng-href="#/" ng-click="download()">Compile and Download</a></div>
 </div>

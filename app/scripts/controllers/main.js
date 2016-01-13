@@ -9,19 +9,40 @@
  */
 angular.module('angularStarterApp')
   .controller('MainCtrl', function ($scope, $http, $q) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.sg = {};
 
     $scope.download = function () {
-      var promise1 = $http.get('/styles/component-1.less');
-      var promise2 = $http.get('/styles/component-2.less');
+      var sg = $scope.sg;
+      var promises = [];
 
-      $q.all([promise1, promise2]).then(function (response) {
-        var lessSource = response[0].data + response[1].data;
-        console.log(lessSource);
+      if (sg.base === true) {
+        var sgBasePromise = $http.get('/styles/sg-base.less');
+        promises.push(sgBasePromise);
+      }
+      if (sg.component) {
+        if (sg.component.icons === true) {
+          var sgComponentIconsPromise = $http.get('/styles/sg-component-icons.less');
+          promises.push(sgComponentIconsPromise);
+        }
+        if (sg.component.grid === true) {
+          var sgComponentGridPromise = $http.get('/styles/sg-component-grid.less');
+          promises.push(sgComponentGridPromise);
+        }
+        if (sg.component.typography === true) {
+          var sgComponentTypographyPromise = $http.get('/styles/sg-component-typography.less');
+          promises.push(sgComponentTypographyPromise);
+        }
+      }
+
+      $q.all(promises).then(function (response) {
+        // Use map reduce to concatenate all the less files
+        var lessSource = response.map(function(item) {
+          return item.data;
+        }).reduce(function(prev, curr) {
+          return prev + curr;
+        }, '');
+
+        // Compile less to css
         less.render(lessSource, {
           compress: true
         }).then(function (output) {
