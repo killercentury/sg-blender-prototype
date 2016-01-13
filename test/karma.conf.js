@@ -22,7 +22,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
-      'bower_components/modernizr/modernizr.js',
       'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
@@ -32,10 +31,6 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/fastclick/lib/fastclick.js',
-      'bower_components/jquery.cookie/jquery.cookie.js',
-      'bower_components/jquery-placeholder/jquery.placeholder.js',
-      'bower_components/foundation/js/foundation.js',
       'bower_components/jszip/dist/jszip.js',
       'bower_components/file-saver.js/FileSaver.js',
       'bower_components/less/dist/less.js',
